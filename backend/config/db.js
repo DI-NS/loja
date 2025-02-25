@@ -9,7 +9,8 @@ const pool = mysql.createPool({
   database: process.env.MYSQL_DATABASE,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
+  decimalNumbers: true  // Adiciona esta linha para converter automaticamente DECIMAL para number
 }).promise();
 
 pool.getConnection()

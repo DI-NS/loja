@@ -4,23 +4,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-commerce - MVP</title>
+    <!-- Bootstrap CSS -->
+    <link 
+        rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    >
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Minha Loja</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Produtos</a>
-            <a href="#">Carrinho</a>
-        </nav>
-    </header>
-    <main id="produto-container">
-        <!-- Os produtos serão exibidos aqui -->
-    </main>
-    <footer>
-        <p>Minha Loja ©2023</p>
-    </footer>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Minha Loja</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"  
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" id="link-listar">Produtos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="link-adicionar">Adicionar Produto</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Conteiner principal -->
+    <div class="container mt-4">
+        <!-- Seção para listar produtos -->
+        <section id="section-listar">
+            <h2>Lista de Produtos</h2>
+            <div id="produto-list" class="row">
+                <!-- Os cards de produtos serão inseridos aqui dinamicamente -->
+            </div>
+        </section>
+
+        <!-- Seção para adicionar novo produto -->
+        <section id="section-adicionar" style="display: none;">
+            <h2>Adicionar Produto</h2>
+            <form id="form-adicionar">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço</label>
+                    <input type="number" step="0.01" class="form-control" id="preco" name="preco" required>
+                </div>
+                <div class="form-group">
+                    <label for="categoria">Categoria</label>
+                    <input type="text" class="form-control" id="categoria" name="categoria" required>
+                </div>
+                <div class="form-group">
+                    <label for="imagem">URL da Imagem</label>
+                    <input type="url" class="form-control" id="imagem" name="imagem">
+                </div>
+                <div class="form-group">
+                    <label for="disponivel">Disponível</label>
+                    <select class="form-control" id="disponivel" name="disponivel">
+                        <option value="true" selected>Sim</option>
+                        <option value="false">Não</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Adicionar Produto</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Modal para editar produto -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="editProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="form-editar">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProductModalLabel">Editar Produto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="editId">
+                        <div class="form-group">
+                            <label for="editNome">Nome</label>
+                            <input type="text" class="form-control" id="editNome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editDescricao">Descrição</label>
+                            <textarea class="form-control" id="editDescricao" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="editPreco">Preço</label>
+                            <input type="number" step="0.01" class="form-control" id="editPreco" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editCategoria">Categoria</label>
+                            <input type="text" class="form-control" id="editCategoria" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editImagem">URL da Imagem</label>
+                            <input type="url" class="form-control" id="editImagem">
+                        </div>
+                        <div class="form-group">
+                            <label for="editDisponivel">Disponível</label>
+                            <select class="form-control" id="editDisponivel">
+                                <option value="true">Sim</option>
+                                <option value="false">Não</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts: jQuery e Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>
